@@ -1,0 +1,7 @@
+div.componente-pai {
+  border: 1px solid #000;
+}
+
+div.componente-filho {
+  border: 1px solid #ccc;
+}
