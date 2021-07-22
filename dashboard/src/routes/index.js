@@ -1,22 +1,29 @@
-import { Redirect, Route, Switch } from "react-router-dom";
-import Login from "../pages/Login";
-import Home from "../pages/Home";
-import NotFound from "../pages/NotFound";
-import { AppLayout, PageLayout } from "./styles";
-import NavBar from "../components/NavBar";
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom'
+import { Styled } from './styles';
+import Home from '../pages/Home';
+import Login from '../pages/Login';
+import NotFound from '../pages/NotFound';
+import Navbar from '../components/Navbar';
+import { useAuth } from '../hooks/context/AuthProvider';
+import CreateProduct from '../pages/CreateProduct';
+
+// import { Container } from './styles';
 
 function Routes() {
+  const { auth } = useAuth();
   return (
-    <AppLayout>
-      <NavBar />
-      <PageLayout>
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/home" component={Home} />
-          <Redirect from="*" to={NotFound} />
-        </Switch>
-      </PageLayout>
-    </AppLayout>
+    <Styled.AppLayout>
+        {auth && <Navbar />}
+        <Styled.PageLayout>
+            <Switch>
+                <Route path="/" exact component={Login} />
+                {auth && <Route path="/home" component={Home} />}
+                {auth && <Route path="/create-product" component={CreateProduct} />}
+                <Redirect from="*" to={NotFound} />
+            </Switch>
+        </Styled.PageLayout>
+    </Styled.AppLayout>
   );
 }
 

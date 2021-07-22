@@ -1,6 +1,6 @@
-import { BrowserRouter } from "react-router-dom";
-import GlobalStyle from "./styles/global";
-import Routes from "./routes";
+import Routes from './routes';
+import GlobalStyle from './styles/global';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
